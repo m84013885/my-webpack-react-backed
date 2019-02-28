@@ -32,9 +32,25 @@ const webpackConfig = {
             },
             {
                 test: /\.css$/,
+                exclude: /(node_modules|bower_components)/,
                 use: [
                     'style-loader',
                     'css-loader?modules&localIdentName=_[local]_[hash:base64:5]',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                          ident: 'postcss',
+                          config: { path: path.resolve(__dirname, 'postcss.config.js') }
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                include: /(antd)/,
+                use: [
+                    'style-loader',
+                    'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {

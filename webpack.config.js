@@ -43,6 +43,14 @@ const webpackConfig ={
                 ]
             },
             {
+                test: /\.css$/,
+                include: /(antd)/,
+                use: [
+                    miniCssExtractPlugin.loader,
+                    'css-loader'
+                ]
+            },
+            {
                 test: /\.(png|svg|jpg|gif)$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [
@@ -61,7 +69,6 @@ const webpackConfig ={
             maxAsyncRequests: 2,
             maxInitialRequests: 2,
             automaticNameDelimiter: '-',
-            name: true,
             name: 'react',
             cacheGroups: {
               vendors: {
