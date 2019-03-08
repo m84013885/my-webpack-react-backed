@@ -5,7 +5,9 @@ class Error extends React.Component {
   _handleBack = this._handleBack.bind(this)
   _handleRef = this._handleRef.bind(this)
   static propTypes = {
-
+    history: PropTypes.object,
+    error: PropTypes.number,
+    text: PropTypes.string
   }
   _handleBack () {
     const { history } = this.props

@@ -3,14 +3,16 @@ import { observer, inject } from 'mobx-react'
 import style from './style.css'
 
 @inject('store') @observer class Main extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-
-    }
+  static propTypes = {
+    history: PropTypes.object
   }
-  componentWillMount () {
 
+  componentDidMount () {
+
+  }
+  state = {
+    state: 0,
+    more: false
   }
   keep = this.keep.bind(this)
   keep () {

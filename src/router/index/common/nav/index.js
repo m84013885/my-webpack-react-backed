@@ -7,19 +7,26 @@ const { Sider } = Layout
 
 class Component extends React.Component {
   static propTypes = {
+    history: PropTypes.object
+  }
+
+  componentDidMount () {
+
+  }
+  state = {
 
   }
   pay = this.pay.bind(this)
-  keep = this.keep.bind(this)
-  more = this.more.bind(this)
   pay () {
     const { history } = this.props
     history.replace('/web/pay')
   }
+  more = this.more.bind(this)
   more () {
     const { history } = this.props
     history.replace('/web/index.html')
   }
+  keep = this.keep.bind(this)
   keep () {
     const { history } = this.props
     history.replace('/web/keep')
