@@ -1,8 +1,9 @@
+/* eslint-disable */
 'use strict'
 import '../../utills/resize'
 import App from './app'
 
-if(module.hot){
+if (module.hot) {
   module.hot.accept()
 }
 const main = function () {

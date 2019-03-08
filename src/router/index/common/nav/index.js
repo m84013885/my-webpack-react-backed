@@ -16,48 +16,28 @@ class Component extends React.Component {
   state = {
 
   }
-  pay = this.pay.bind(this)
-  pay () {
-    const { history } = this.props
-    history.replace('/web/pay')
-  }
   more = this.more.bind(this)
   more () {
     const { history } = this.props
-    history.replace('/web/index.html')
-  }
-  keep = this.keep.bind(this)
-  keep () {
-    const { history } = this.props
-    history.replace('/web/keep')
+    history.replace('/web/more')
   }
   _renderNavSelected () {
     const { history } = this.props
     const pathname = history.location.pathname
-    let [more, pay, keep] = ['', '', '']
+    let [more] = ['', '', '']
     switch (pathname) {
-      case '/web/keep':
-        keep = style.active
-        break
-
-      case '/web/index.html':
+      case '/web/more':
         more = style.active
         break
-
-      case '/web/pay':
-        pay = style.active
-        break
     }
-    return { more, pay, keep }
+    return { more }
   }
   render () {
-    const { more, pay, keep } = this._renderNavSelected()
+    const { more } = this._renderNavSelected()
     return (
       <Sider className={style.nav} width={150}>
         <div className={style.navTitle}>Remix</div>
-        <div className={`${style.navBtn} ${more}`} onClick={this.more}><Icon type="bars" className={style.navBtnIcon}/>充值数据(新)</div>
-        <div className={`${style.navBtn} ${pay}`} onClick={this.pay}><Icon type="bars" className={style.navBtnIcon}/>充值数据(旧)</div>
-        <div className={`${style.navBtn} ${keep}`} onClick={this.keep}><Icon type="bars" className={style.navBtnIcon}/>留存数据</div>
+        <div className={`${style.navBtn} ${more}`} onClick={this.more}><Icon type="bars" className={style.navBtnIcon}/>充值数据</div>
       </Sider>
     )
   }
