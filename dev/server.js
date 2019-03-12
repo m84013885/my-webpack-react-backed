@@ -5,6 +5,7 @@ const WebpackHotMiddleware = require('webpack-hot-middleware')
 const childProcess = require('child_process')
 const IP = require('./IP')
 const app = express()
+const proxy = require('http-proxy-middleware')
 const config = require('./webpack.config')
 const compiler = webpack(config)
 
@@ -16,10 +17,23 @@ app.use(webpackDevMiddleware(compiler, {
   progress: true,
   inline: true,
   hot: true
-}));
+}))
+
+// Add middleware for http proxying
+const apiProxy = proxy(
+  '/api',
+  {
+    target: 'http://remix-tj.moumentei.com/',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api': ''
+    }
+  }
+)
+app.use('/api/*', apiProxy)// api子目录下的都是用代理
+
 app.use(WebpackHotMiddleware(compiler))
 // Serve the files on port 3000.
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!\n');
-  childProcess.exec(`open http://${IP}:3000/`)
-});
+  childProcess.exec(`open http://${IP}:3000`)
+})

@@ -11,7 +11,7 @@ class Error extends React.Component {
   }
   _handleBack () {
     const { history } = this.props
-    history.replace('/web/more')
+    history.push('/web/more')
   }
   _handleRef () {
     window.location.reload()

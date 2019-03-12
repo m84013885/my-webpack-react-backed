@@ -1,0 +1,13 @@
+.payFrom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.payFromText{
+    margin-right:5px;
+    margin-left:25px;
+    color: #333;
+    text-align: left;
+    font-size: 14px;
+    font-family: PingFang-SC-Medium;
+}

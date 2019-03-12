@@ -1,5 +1,26 @@
-.test{
-    width: 200rpx;
-    height: 200rpx;
-    background-image: url('../../../images/index/alipay.png');
+.payContent{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    width: 95%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #e0e4e8;
+}
+.payTitle{
+    padding-left: 30px;
+    height: 40px;
+    color: #333;
+    text-align: left;
+    font-size: 16px;
+    font-family: PingFang-SC-Medium;
+    line-height: 40px;
+}
+.payFrom{
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-left: 30px;
+    background-color: #fff;
 }

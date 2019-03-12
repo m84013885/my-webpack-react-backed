@@ -19,7 +19,7 @@ class Component extends React.Component {
   more = this.more.bind(this)
   more () {
     const { history } = this.props
-    history.replace('/web/more')
+    history.push('/web/more')
   }
   _renderNavSelected () {
     const { history } = this.props

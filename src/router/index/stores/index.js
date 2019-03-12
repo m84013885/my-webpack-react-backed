@@ -4,16 +4,18 @@ import {
   action,
   computed
 } from 'mobx'
+import more from './more'
 
 // 请求
 class Store {
   @observable payBox=true
   @action payBoxhide = () => {
-    this.payBox=true
+    this.payBox = true
   }
 }
 const store = new Store()
 
 export default {
-  store
+  store,
+  more
 }
