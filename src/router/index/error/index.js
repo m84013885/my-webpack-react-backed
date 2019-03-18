@@ -11,7 +11,7 @@ class Error extends React.Component {
   }
   _handleBack () {
     const { history } = this.props
-    history.push('/web/more')
+    history.push('/web/index.html')
   }
   _handleRef () {
     window.location.reload()
@@ -25,7 +25,7 @@ class Error extends React.Component {
     }
   }
   componentDidMount () {
-
+    this._handleBack()
   }
   render () {
     const text = this.props.text || '404找不到页面'

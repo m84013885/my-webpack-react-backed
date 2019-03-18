@@ -40,6 +40,18 @@ class More {
   @action changeData = (data) => {
     this.data = data
   }
+
+  // loading
+  @observable loading = false
+  @action changeLoading = (loading) => {
+    this.loading = loading
+  }
+
+  // lastLoading
+  @observable lastLoading = false
+  @action changeLastLoading = (lastLoading) => {
+    this.lastLoading = lastLoading
+  }
 }
 const more = new More()
 export default more

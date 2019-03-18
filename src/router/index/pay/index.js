@@ -3,14 +3,14 @@ import { observer, inject } from 'mobx-react'
 import style from './style.css'
 import { Icon, message, Spin } from 'antd'
 import api from './api'
-
-import TimePicker from './timePicker'
-import Platform from './platform'
-import App from './app'
-import Channel from './channel'
-import Sumbit from './sumbit'
-import DownLoad from './download'
 import DataTable from './dataTable'
+
+import TimePicker from '../more/timePicker'
+import Platform from '../more/platform'
+import App from '../more/app'
+import Channel from '../more/channel'
+import Sumbit from '../more/sumbit'
+import DownLoad from '../more/download'
 
 @inject('store', 'more') @observer class Main extends React.Component {
   static propTypes = {
@@ -72,7 +72,6 @@ import DataTable from './dataTable'
   async getDataArr () {
     const changeData = this.props.more.changeData
     const changeLoading = this.props.more.changeLoading
-    const changeLastLoading = this.props.more.changeLastLoading
     const start = this.props.more.startTime
     const end = this.props.more.endTime
     const os = this.props.more.os
@@ -86,9 +85,7 @@ import DataTable from './dataTable'
     }
     else {
       changeData(res.data)
-      changeLastLoading(true)
       const regpay = await api.getDataRegpay(start, end, os, channel, app)
-      changeLastLoading(false)
       const data = this.props.more.data
       if (os === 'ios') {
         regpay.data.map((content) => {

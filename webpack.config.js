@@ -102,7 +102,7 @@ const webpackConfig = {
   },
   // externals: ["react", "react-dom","mobx","mobx-react"], // string（精确匹配）
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(),
     // new HtmlWebpackPlugin({
     //     template: path.resolve(__dirname, './index.html')
     // }),

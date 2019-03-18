@@ -9,20 +9,27 @@ import { Layout } from 'antd'
 import style from './home.css'
 
 import More from './more'
+import Pay from './pay'
 class Home extends React.Component {
   static propTypes = {
     history: PropTypes.object
   }
+  componentDidUpdate () {
+    this.replaceHTML()
+  }
   componentDidMount () {
+    this.replaceHTML()
+  }
+  replaceHTML () {
     const { history } = this.props
     const pathname = history.location.pathname
-    const router = ['/web/more', '', '']
+    const router = ['/web/index.html', '/web/pay.html', '']
     for (let i = 0; i < router.length; i++) {
       if (pathname === router[i]) {
         return
       }
     }
-    history.replace('error')
+    history.replace('/error')
   }
   render () {
     const { Content } = Layout
@@ -33,7 +40,8 @@ class Home extends React.Component {
           <_Header></_Header>
           <Content>
             <Switch>
-              <Route exact path="/web/more" component={More}></Route>
+              <Route exact path="/web/index.html" component={More}></Route>
+              <Route exact path="/web/pay.html" component={Pay}></Route>
             </Switch>
           </Content>
         </Layout>

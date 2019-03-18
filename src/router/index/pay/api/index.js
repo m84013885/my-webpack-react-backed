@@ -39,7 +39,7 @@ class Api {
   getData (start, end, os, app, channel) {
     return new Promise((resolve, reject) => {
       asyncFetch({
-        url: URLPREFIX + `default/misc?start=${start}&end=${end}&os=${os}&app=${app}&channel=${channel}&sort=`,
+        url: URLPREFIX + `default?page=0&start=${start}&end=${end}&os=${os}&app=${app}&channel=${channel}&sort=`,
         method: 'GET'
       }).then(res => {
         if (res.err === 0) {
