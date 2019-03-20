@@ -17,13 +17,35 @@ import DataTable from './dataTable'
     history: PropTypes.object,
     more: PropTypes.object
   }
-
-  componentDidMount () {
-
+  GetQueryString (name) {
+    const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+    const r = window.location.search.substr(1).match(reg)
+    if (r != null) { return (decodeURIComponent(r[2])) }
+    return null
+  }
+  componentDidUpdate () {
+    // const start1 = this.GetQueryString('start')
+    // const end1 = this.GetQueryString('end')
+    // const os1 = this.GetQueryString('os')
+    // const channel1 = this.GetQueryString('channel')
+    // const app1 = this.GetQueryString('app')
+    // const start2 = this.state.start
+    // const end2 = this.state.end
+    // const os2 = this.state.os
+    // const channel2 = this.state.start.channel
+    // const app2 = this.state.app
+    // if(start1!==start2 && end1!==end2 && os1!==os2 && channel1!==channel2 && app1!==app2){
+    //   this.getDataArr()
+    // }
   }
   state = {
     state: 0,
-    more: false
+    more: false,
+    app: 0,
+    channel: 0,
+    os: 0,
+    start: 0,
+    end: 0
   }
   getAppArr = this.getAppArr.bind(this)
   async getAppArr () {
@@ -79,7 +101,7 @@ import DataTable from './dataTable'
     const channel = this._getChannelSelect()
     const app = this._getAppSelect()
     changeLoading(true)
-    const res = await api.getData(start, end, os, channel, app)
+    const res = await api.getData(start, end, os, app, channel)
     changeLoading(false)
     if (typeof (res) === 'string') {
       message.error(res)
@@ -87,7 +109,7 @@ import DataTable from './dataTable'
     else {
       changeData(res.data)
       changeLastLoading(true)
-      const regpay = await api.getDataRegpay(start, end, os, channel, app)
+      const regpay = await api.getDataRegpay(start, end, os, app, channel)
       changeLastLoading(false)
       const data = this.props.more.data
       if (os === 'ios') {
@@ -114,6 +136,7 @@ import DataTable from './dataTable'
       }
     }
   }
+  _getAppSelect = this._getAppSelect.bind(this)
   _getAppSelect () {
     const appSelect = this.props.more.app
     let app = ''
@@ -133,6 +156,7 @@ import DataTable from './dataTable'
     })
     return app
   }
+  _getChannelSelect = this._getChannelSelect.bind(this)
   _getChannelSelect () {
     const appSelect = this.props.more.channel
     let app = ''
@@ -150,12 +174,26 @@ import DataTable from './dataTable'
         app += content
       }
     })
+    console.log(appArr.length)
+    console.log(appSelect.length)
     if (appArr.length === appSelect.length) {
+      console.log(1)
       return ''
     }
     else {
       return app
     }
+  }
+  pushSumbit = this.pushSumbit.bind(this)
+  pushSumbit () {
+    const { history } = this.props
+    const pathname = history.location.pathname
+    const start = this.props.more.startTime
+    const end = this.props.more.endTime
+    const os = this.props.more.os
+    const channel = this._getChannelSelect()
+    const app = this._getAppSelect()
+    history.push(pathname + `?start=${start}&end=${end}&os=${os}&channel=${channel}&app=${app}`)
   }
   render () {
     const loading = this.props.more.loading
@@ -172,7 +210,7 @@ import DataTable from './dataTable'
           <Sumbit getDataArr={this.getDataArr}/>
           <Spin style={{ display: lastLoading ? 'block' : 'none' }} indicator={antIcon}/>
         </div>
-        <DownLoad/>
+        <DownLoad getChannel={this._getChannelSelect} getApp={this._getAppSelect}/>
         <DataTable/>
         <Spin style={{ display: loading ? 'block' : 'none' }} className={style.payLoadingSpin} size="large" />
       </div>

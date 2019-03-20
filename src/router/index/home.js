@@ -21,15 +21,17 @@ class Home extends React.Component {
     this.replaceHTML()
   }
   replaceHTML () {
-    const { history } = this.props
-    const pathname = history.location.pathname
-    const router = ['/web/index.html', '/web/pay.html', '']
-    for (let i = 0; i < router.length; i++) {
-      if (pathname === router[i]) {
-        return
-      }
-    }
-    history.replace('/error')
+    console.log(1)
+    // const { history } = this.props
+    // const pathname = history.location.pathname
+    // console.log(pathname)
+    // const router = ['/web/index.html', '/web/pay.html', '']
+    // for (let i = 0; i < router.length; i++) {
+    //   if (pathname === router[i]) {
+    //     return
+    //   }
+    // }
+    // history.replace('/error')
   }
   render () {
     const { Content } = Layout

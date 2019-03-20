@@ -113,6 +113,9 @@ const webpackConfig = {
     }),
     new miniCssExtractPlugin({
       chunkFilename: './css/[name].[chunkhash:5].css'
+    }),
+    new webpack.DefinePlugin({
+      'process.MODE': JSON.stringify(true)
     })
   ],
   mode: 'production' // 设置mode

@@ -61,7 +61,7 @@ import { Dropdown, Button, Menu, Checkbox, Input } from 'antd'
       )
     }
   }
-  onSearchApp (value) {
+  onSearchChannel (value) {
     const channel = this.props.more.channel
     const changeChannel = this.props.more.changeChannel
     this.setState({

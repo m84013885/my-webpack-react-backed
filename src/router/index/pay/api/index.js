@@ -1,9 +1,6 @@
 
 import asyncFetch from '../../../../utills/asyncFetch'
-
-// const URLPREFIX = '/api/'
-// const URLPREFIX = 'http://remix-tj.moumentei.com/'
-const URLPREFIX = '/'
+import {URLPREFIX} from '../../config.js'
 
 class Api {
   getApp (os) {

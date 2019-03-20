@@ -8,49 +8,48 @@ import api from '../api'
   static propTypes = {
     history: PropTypes.object,
     more: PropTypes.object,
-    getAppArr: PropTypes.func,
-    getChannelArr: PropTypes.func
-  }
-
-  componentDidMount () {
-
+    getChannel: PropTypes.func,
+    getApp: PropTypes.func
   }
   state = {
 
   }
-  handleDownloadChannelDetailMisc = this.handleDownloadChannelDetailMisc.bind()
-  handleDownloadChannelDetailMisc () {
+  handleDownloadChannelDetailMisc = this.handleDownloadChannelDetailMisc.bind(this)
+  handleDownloadChannelDetail = this.handleDownloadChannelDetail.bind(this)
+  handleDownloadChannel = this.handleDownloadChannel.bind(this)
+  componentDidMount () {
+  }
+  async handleDownloadChannelDetailMisc () {
     const start = this.props.more.startTime
     const end = this.props.more.endTime
     const os = this.props.more.os
-    const channel = this._getChannelSelect()
-    const app = this._getAppSelect()
+    const channel = this.props.getChannel()
+    const app = this.props.getApp()
     const iframe = api.downloadChannelDetailMisc(start, end, os, channel, app)
     const body = document.getElementsByTagName('body')[0]
     body.appendChild(iframe)
   }
-  handleDownloadChannelDetail = this.handleDownloadChannelDetail.bind()
-  handleDownloadChannelDetail () {
+  async handleDownloadChannelDetail () {
     const start = this.props.more.startTime
     const end = this.props.more.endTime
     const os = this.props.more.os
-    const channel = this._getChannelSelect()
-    const app = this._getAppSelect()
+    const channel = this.props.getChannel()
+    const app = this.props.getApp()
     const iframe = api.downloadChannelDetail(start, end, os, channel, app)
     const body = document.getElementsByTagName('body')[0]
     body.appendChild(iframe)
   }
-  handleDownloadChannel = this.handleDownloadChannel.bind()
   handleDownloadChannel () {
     const start = this.props.more.startTime
     const end = this.props.more.endTime
     const os = this.props.more.os
-    const channel = this._getChannelSelect()
-    const app = this._getAppSelect()
+    const channel = this.props.getChannel()
+    const app = this.props.getApp()
     const iframe = api.downloadChannel(start, end, os, channel, app)
     const body = document.getElementsByTagName('body')[0]
     body.appendChild(iframe)
   }
+
   render () {
     const ButtonGroup = Button.Group
     return (
