@@ -52,11 +52,33 @@ const webpackConfig = {
         ]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(gif|png|jpe?g|svg)$/,
         exclude: /(node_modules|bower_components)/,
         use: [
-          'file-loader?limit=1&name=[name].[ext]&outputPath=/images&publicPath=../images'
-        ]
+          {
+            loader:'url-loader',
+            options:{ // 这里的options选项参数可以定义多大的图片转换为base64
+                name: '[name].[ext]',
+                limit: 8192, // 表示小于50kb的图片转为base64,大于50kb的是路径
+                outputPath:'images', //定义输出的图片文件夹
+                publicPath:'../images'
+            }
+          },
+          {
+            loader: "img-loader",
+            options: {
+              plugins: [
+                require("imagemin-pngquant")({
+                  quality: "10" // 质量
+                }),
+                require('imagemin-gifsicle')({}),
+                require('imagemin-mozjpeg')({}),
+                require('imagemin-optipng')({}),
+                require('imagemin-svgo')({})
+              ]
+            }
+          }
+        ],
       }
     ]
   },
@@ -102,7 +124,7 @@ const webpackConfig = {
   },
   // externals: ["react", "react-dom","mobx","mobx-react"], // string（精确匹配）
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(),
     // new HtmlWebpackPlugin({
     //     template: path.resolve(__dirname, './index.html')
     // }),

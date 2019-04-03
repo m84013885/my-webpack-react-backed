@@ -1,7 +1,7 @@
 'use strict'
 import stores from './stores'
 import { Provider } from 'mobx-react' // 供应stores
-import { Route, Switch, HashRouter } from 'react-router-dom'
+import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
 import Home from './home'
 import Error from './error'
@@ -16,12 +16,12 @@ class App extends React.Component {
   render () {
     return (
       <Provider {...stores}>
-        <HashRouter>
+        <BrowserRouter>
           <Switch>
             <Route exact path="/web/:id" component={Home}></Route>
             <Route component={Error} ></Route>
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
       </Provider>
     )
   }
