@@ -25,7 +25,7 @@ import api from '../api'
     const os = this.props.more.os
     const channel = this.props.getChannel()
     const app = this.props.getApp()
-    const iframe = api.downloadChannelDetailMisc(start, end, os, channel, app)
+    const iframe = api.downloadChannelDetailMisc(start, end, os, app, channel)
     const body = document.getElementsByTagName('body')[0]
     body.appendChild(iframe)
   }
@@ -35,7 +35,7 @@ import api from '../api'
     const os = this.props.more.os
     const channel = this.props.getChannel()
     const app = this.props.getApp()
-    const iframe = api.downloadChannelDetail(start, end, os, channel, app)
+    const iframe = api.downloadChannelDetail(start, end, os, app, channel)
     const body = document.getElementsByTagName('body')[0]
     body.appendChild(iframe)
   }
@@ -45,7 +45,7 @@ import api from '../api'
     const os = this.props.more.os
     const channel = this.props.getChannel()
     const app = this.props.getApp()
-    const iframe = api.downloadChannel(start, end, os, channel, app)
+    const iframe = api.downloadChannel(start, end, os, app, channel)
     const body = document.getElementsByTagName('body')[0]
     body.appendChild(iframe)
   }
